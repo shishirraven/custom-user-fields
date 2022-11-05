@@ -67,29 +67,29 @@ If you want to request a new feature for the plugin please post a request on the
 [Github](https://github.com/shishirraven/custom-user-fields/issues) 
 
 
-### Installation 
+## Installation 
 
 1.  Install the plugin either via the WordPress.org plugin directory, or by uploading the files to your server (in the /wp-content/plugins/ directory).
 2.  Activate the User Registration plugin through the \'Plugins\' menu in WordPress.
 3.  Go to user>add new or edit any user, scroll down to find \"Need a new user field?\". 
 4.  Add the fields as required. 
 
-### Screenshots 
+## Screenshots 
 
 1. Add New Field Option on Add 
-2. Add Field Interface
-3. Field Input Type Selection. 
-4. Marking a field to appear on Registration page. 
-5. How fields appear after adding through Custom User Fields. 
-6. New Fields appearing on Regsistration Form. 
-7. Field added through Custom User field Appearing on User Listing. 
-
 ![Add New Field Option on Add](https://user-images.githubusercontent.com/4470383/200141058-d3932d9e-fd1a-45ae-b2b8-c0fe57e3a634.png)
+2. Add Field Interface
 ![Add Field Interface](https://user-images.githubusercontent.com/4470383/200141061-c9c3eac1-b998-4d92-b289-677c908de284.png)
+3. Field Input Type Selection. 
 ![Field Input Type Selection.](https://user-images.githubusercontent.com/4470383/200141062-935e706a-5bf8-498e-b5fd-e07e5a5aad29.png)
+4. Marking a field to appear on Registration page. 
 ![Marking a field to appear on Registration page.](https://user-images.githubusercontent.com/4470383/200141063-135866a6-6a3c-4948-9d99-85df0e47dea6.png)
+5. How fields appear after adding through Custom User Fields. 
 ![How fields appear after adding through Custom User Fields.](https://user-images.githubusercontent.com/4470383/200141064-290d858f-230d-4b5b-b62c-df41888176ba.png)
+6. New Fields appearing on Regsistration Form. 
 ![New Fields appearing on Regsistration Form. ](https://user-images.githubusercontent.com/4470383/200141065-e724f12e-a7f2-429f-8c17-b060fe72d4e1.png)
+7. Field added through Custom User field Appearing on User Listing. 
 ![Field added through Custom User field Appearing on User Listing.](https://user-images.githubusercontent.com/4470383/200141066-878c87e5-ed57-4207-aec2-3fa2e495ea44.png)
+
 
 
