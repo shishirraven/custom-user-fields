@@ -355,9 +355,8 @@ class wpUserField
     {
         if ($this->fieldWrapper == "form") {
             return $this->fieldWrapperForm(
-                "",
-                "<input type=\"checkbox\" id=\"{$this->name}\" name=\"{$this->name}\" value=\"{$this->value}\">
-                <label for=\"{$this->name}\">{$this->label}</label>",
+                "<label for=\"{$this->name}\">{$this->label}</label>",
+                "<input type=\"checkbox\" id=\"{$this->name}\" name=\"{$this->name}\" value=\"{$this->value}\">",
                 $this->postFixHTML
             );
         }
@@ -383,9 +382,6 @@ class wpUserField
                                                                                                                                                                                 if ($fieldValue == $this->checkboxOptions) {
                                                                                                                                                                                     echo "checked";
                                                                                                                                                                                 } ?> />
-                    <label for="<?php echo $this->name; ?>">
-                        <?php echo $this->label; ?>
-                    </label>
                 </td>
                 <td>
                     <?php echo $this->postFixHTML; ?>
@@ -885,7 +881,9 @@ class wpUserField
         if ($this->fieldWrapper == "form") {
             return $this->fieldWrapperForm(
                 "<label for=\"{$this->name}\">{$this->label}</label>",
-                "<input type=\"range\" id=\"{$this->name}\" placeholder=\"{$this->placeholder}\" name=\"{$this->name}\" value=\"\" class=\"regular-text\" />",
+                "<div style='display: flex;'>
+                <input type=\"range\" id=\"{$this->name}\" placeholder=\"{$this->placeholder}\" name=\"{$this->name}\" min=\"{$this->rangeMin}\" max=\"{$this->rangeMax}\" value=\"{$this->value}\" class=\"regular-text\" oninput=\"this.nextElementSibling.value = this.value\"  /> <output><?php echo $this->value; ?></output>
+                </div>",
                 $this->postFixHTML
             );
         }
@@ -911,8 +909,10 @@ class wpUserField
             <tr>
                 <th><label for="<?php echo  $this->name; ?>"><?php echo $this->label; ?></label></th>
                 <td>
-                    <input type="range" id="<?php echo  $this->name; ?>" placeholder="<?php echo  $this->placeholder; ?>" name="<?php echo $this->name; ?>" value="<?php echo $this->value; ?>" min="<?php echo $this->rangeMin; ?>" max="<?php echo $this->rangeMax; ?>" class="regular-text" oninput="this.nextElementSibling.value = this.value" step="<?php echo $this->step; ?>" />
+                   <div style='display: flex;'>
+                   <input type="range" id="<?php echo  $this->name; ?>" placeholder="<?php echo  $this->placeholder; ?>" name="<?php echo $this->name; ?>" value="<?php echo $this->value; ?>" min="<?php echo $this->rangeMin; ?>" max="<?php echo $this->rangeMax; ?>" class="regular-text" oninput="this.nextElementSibling.value = this.value" step="<?php echo $this->step; ?>" />
                     <output><?php echo $this->value; ?></output>
+                   </div>
                 </td>
                 <td>
                     <?php echo $this->postFixHTML; ?>
