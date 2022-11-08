@@ -8,7 +8,7 @@
  * @author            Shishir Raven
  * @license           GPL-3.0-or-later
  * @wordpress-plugin
- * Plugin Name:       Plugin Name
+ * Plugin Name:       Custom User Fields
  * Plugin URI:        https://iamshishir.com/visual-user-fields-wordpress-plugin/
  * Description:       Description of the plugin.
  * Version:           1.0.0
@@ -19,6 +19,5 @@
  * Text Domain:       custom-user-fields
  * License:           GPL v3 or later
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.txt
- * Update URI:        https://iamshishir.com/visual-user-fields-wordpress-plugin/
  */
 include("includes/dynamicFields.php");
