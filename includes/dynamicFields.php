@@ -197,19 +197,19 @@ function addDynamicFields()
                     <tr>
                         <th>
                             <label for="fieldLabel">Field Label (required)</label>
-                            <div style="color: gray;"><small><em>This is the name which will appear on the EDIT page.</em></small></div>
                         </th>
                         <td>
                             <input type="text" id="fieldLabel" name="fieldLabel" class="regular-text" />
+                            <p class="description">This is the name which will appear on the EDIT page.</p>
                         </td>
                     </tr>
                     <tr>
                         <th>
                             <label for="fieldName">Field Name (required)</label>
-                            <div style="color: gray;"><small><em>Single word, no spaces. Underscores and dashes allowed.</em></small></div>
                         </th>
                         <td>
                             <input type="text" id="fieldname" name="fieldName" class="regular-text" />
+                            <p class="description">Single word, no spaces. Underscores and dashes allowed.</p>
                         </td>
                     </tr>
                     <tr>
@@ -347,20 +347,20 @@ function addDynamicFields()
                         <tr>
                             <th>
                                 <label for="editFieldLabel">Field Label (required)</label>
-                                <div style="color: gray;"><small><em>This is the name which will appear on the EDIT page.</em></small></div>
                             </th>
                             <td>
                                 <input type="text" id="editFieldLabel" name="editFieldLabel" class="regular-text" />
+                                <p class="description">This is the name which will appear on the EDIT page.</p>
                             </td>
                         </tr>
                         <tr>
                             <th>
                                 <label for="editFieldName">Field Name (required)</label>
-                                <div style="color: gray;"><small><em>Single word, no spaces. Underscores and dashes allowed.</em></small></div>
                             </th>
                             <td>
                                 <input type="text" id="editFieldname" name="editFieldName" class="regular-text" />
                                 <input type="hidden" id="editFieldnameOld" name="editFieldnameOld" class="regular-text" />
+                                <p class="description">Single word, no spaces. Underscores and dashes allowed.</p>
                             </td>
                         </tr>
                         <tr id="placeholderRow">
