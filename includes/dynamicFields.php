@@ -1149,7 +1149,7 @@ function brUpField()
         "type" => "success"
     );
 
-    echo json_encode($response);
+     wp_send_json($response);
 
     wp_die();
 }
@@ -1197,7 +1197,7 @@ function brDownField()
         "type" => "success"
     );
 
-    echo json_encode($response);
+    wp_send_json($response);
 
     wp_die();
 }
@@ -1245,7 +1245,7 @@ function brDeleteField()
         "type" => "success"
     );
 
-    echo json_encode($response);
+    wp_send_json($response);
 
     wp_die();
 }
@@ -1270,7 +1270,7 @@ function brEditAddField()
             "type" => "error"
         );
         // Returning the message. 
-        echo json_encode($response);
+        wp_send_json($response);
         wp_die();
     }
 
@@ -1294,7 +1294,7 @@ function brEditAddField()
                 "type" => "not_unique"
             );
             // Returning the message. 
-            echo json_encode($response);
+            wp_send_json($response);
             wp_die();
         }
     }
@@ -1335,7 +1335,7 @@ function brEditAddField()
         "type" => "success"
     );
 
-    echo json_encode($response);
+    wp_send_json($response);
 
     wp_die();
 }
@@ -1359,7 +1359,7 @@ function brAddField()
             "type" => "error"
         );
         // Returning the message. 
-        echo json_encode($response);
+        wp_send_json($response);
         wp_die();
     }
     for ($i = 0; $i < count($fields); $i++) {
@@ -1369,7 +1369,7 @@ function brAddField()
                 "type" => "not_unique"
             );
             // Returning the message. 
-            echo json_encode($response);
+            wp_send_json($response);
             wp_die();
         }
     }
@@ -1408,7 +1408,7 @@ function brAddField()
         "type" => "success"
     );
 
-    echo json_encode($response);
+    wp_send_json($response);
 
     wp_die();
 }
