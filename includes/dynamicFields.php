@@ -1118,7 +1118,7 @@ function brUpField()
         );
     }
 
-    $fieldname = $_POST['fieldname'];
+    $fieldname = sanitize_text_field($_POST['fieldname']);
     $fields = get_option("braveWPUser");
 
 
@@ -1166,7 +1166,7 @@ function brDownField()
         );
     }
 
-    $fieldname = $_POST['fieldname'];
+    $fieldname = sanitize_text_field($_POST['fieldname']);
     $fields = get_option("braveWPUser");
 
 
@@ -1216,7 +1216,7 @@ function brDeleteField()
         );
     }
 
-    $fieldname = $_POST['fieldname'];
+    $fieldname = sanitize_text_field($_POST['fieldname']);
     $fields = get_option("braveWPUser");
 
 
@@ -1261,7 +1261,7 @@ function brEditAddField()
     } else {
         $fields = json_decode($fields, true);
     }
-    $fieldname = $_POST['editFieldName'];
+    $fieldname = sanitize_text_field($_POST['editFieldName']);
     $fieldnameOld = $_POST['editFieldnameOld'];
 
     if (!current_user_can('administrator')) {
@@ -1298,16 +1298,16 @@ function brEditAddField()
             wp_die();
         }
     }
-    $fieldType = $_POST['editFieldType'];
-    $fieldLabel = $_POST['editFieldLabel'];
-    $fieldPlaceholder = $_POST['editFieldPlaceholder'];
-    $addRegistrationPage = $_POST['editAddRegistrationPage'];
-    $userList = $_POST['editUserList'];
-    $rangeMin = $_POST['editRangeMin'];
-    $rangeMax = $_POST['editRangeMax'];
-    $rangeDefault = $_POST['editRangeDefault'];
-    $rangeStep = $_POST['editRangeStep'];
-    $optionData = $_POST['optionData'];
+    $fieldType = sanitize_text_field($_POST['editFieldType']);
+    $fieldLabel = sanitize_text_field($_POST['editFieldLabel']);
+    $fieldPlaceholder = sanitize_text_field($_POST['editFieldPlaceholder']);
+    $addRegistrationPage = sanitize_text_field($_POST['editAddRegistrationPage']);
+    $userList = sanitize_text_field($_POST['editUserList']);
+    $rangeMin = sanitize_text_field($_POST['editRangeMin']);
+    $rangeMax = sanitize_text_field($_POST['editRangeMax']);
+    $rangeDefault = sanitize_text_field($_POST['editRangeDefault']);
+    $rangeStep = sanitize_text_field($_POST['editRangeStep']);
+    $optionData = sanitize_text_field($_POST['optionData']);
 
     $fields[$indexOfItem] = array(
         "fieldName"                 =>  $fieldname,
@@ -1352,7 +1352,7 @@ function brAddField()
     } else {
         $fields = json_decode($fields, true);
     }
-    $fieldname = $_POST['fieldname'];
+    $fieldname = sanitize_text_field($_POST['fieldname']);
     if (!current_user_can('administrator')) {
         $response = array(
             "message" => "Requires Admin Access",
@@ -1373,16 +1373,16 @@ function brAddField()
             wp_die();
         }
     }
-    $fieldType = $_POST['fieldType'];
-    $fieldLabel = $_POST['fieldLabel'];
-    $fieldPlaceholder = $_POST['fieldPlaceholder'];
-    $addRegistrationPage = $_POST['addRegistrationPage'];
-    $userList = $_POST['userList'];
-    $rangeMin = $_POST['rangeMin'];
-    $rangeMax = $_POST['rangeMax'];
-    $rangeDefault = $_POST['rangeDefault'];
-    $rangeStep = $_POST['rangeStep'];
-    $optionData = $_POST['optionData'];
+    $fieldType = sanitize_text_field($_POST['fieldType']);
+    $fieldLabel = sanitize_text_field($_POST['fieldLabel']);
+    $fieldPlaceholder = sanitize_text_field($_POST['fieldPlaceholder']);
+    $addRegistrationPage = sanitize_text_field($_POST['addRegistrationPage']);
+    $userList = sanitize_text_field($_POST['userList']);
+    $rangeMin = sanitize_text_field($_POST['rangeMin']);
+    $rangeMax = sanitize_text_field($_POST['rangeMax']);
+    $rangeDefault = sanitize_text_field($_POST['rangeDefault']);
+    $rangeStep = sanitize_text_field($_POST['rangeStep']);
+    $optionData = sanitize_text_field($_POST['optionData']);
 
     $fields[] = array(
         "fieldName"                 =>  $fieldname,

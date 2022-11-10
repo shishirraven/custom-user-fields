@@ -967,7 +967,7 @@ class wpUserField
 
     function updateFieldIntoDatabase($user_id)
     {
-        update_user_meta($user_id, $this->name, $_POST[$this->name]);
+        update_user_meta($user_id, $this->name, sanitize_text_field($_POST[$this->name]));
     }
 
     /**
