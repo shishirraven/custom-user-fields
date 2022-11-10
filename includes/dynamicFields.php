@@ -5,11 +5,11 @@ include("braveUser.php");
 // Read fields from the OPTIONs and add it to Edit, Add and Profile fields. 
 // =========================================================================
 
-add_action('init', 'addFieldsToUser');
+add_action('init', 'bcuf_addFieldsToUser');
 
-function addFieldsToUser()
+function bcuf_addFieldsToUser()
 {
-    $user = new braveUser();
+    $user = new bcuf_braveUser();
     $fields = get_option("braveWPUser");
 
     if ($fields != "") {
@@ -33,7 +33,7 @@ function addFieldsToUser()
                 $optionData = $field_array[$i]["optionData"];
             }
 
-            $field = new wpUserField();
+            $field = new bcuf_wpUserField();
             $field->setName($fieldName);
             $field->setLabel($fieldLabel);
             $field->setPlaceholder($fieldPlaceholder);
@@ -93,14 +93,14 @@ function addFieldsToUser()
     // Show FORM. 
     // AJAX TO _brave_add_field
     if (current_user_can('administrator')) {
-        add_action('edit_user_profile', 'addDynamicFields');
-        add_action('show_user_profile', 'addDynamicFields');
-        add_action('user_new_form', 'addDynamicFields');
+        add_action('edit_user_profile', 'bcuf_addDynamicFields');
+        add_action('show_user_profile', 'bcuf_addDynamicFields');
+        add_action('user_new_form', 'bcuf_addDynamicFields');
     }
     // add_action('register_form', 'addDynamicFields');
 }
 
-function addDynamicFields()
+function bcuf_addDynamicFields()
 {
 ?>
     <div class="new-field" id="BrAddField">
@@ -225,7 +225,7 @@ function addDynamicFields()
                             Registration page
                         </th>
                         <td>
-                            <input type="checkbox" onclick="checkRegistration()" name="addRegistrationPage" id="addRegistrationPage" value="">
+                            <input type="checkbox" onclick="bcuf_checkRegistration()" name="addRegistrationPage" id="addRegistrationPage" value="">
                             <label for="addRegistrationPage">Add field on registration page?</label>
                         </td>
                     </tr>
@@ -234,7 +234,7 @@ function addDynamicFields()
                             User listing
                         </th>
                         <td>
-                            <input type="checkbox" onclick="checkUserList()" name="userList" id="userList" value="">
+                            <input type="checkbox" onclick="bcuf_checkUserList()" name="userList" id="userList" value="">
                             <label for="userList">Show on user listing?</label>
                         </td>
                     </tr>
@@ -376,7 +376,7 @@ function addDynamicFields()
                                 Registration page
                             </th>
                             <td>
-                                <input type="checkbox" onclick="editCheckRegistration()" name="editAddRegistrationPage" id="editAddRegistrationPage" value="">
+                                <input type="checkbox" onclick="bcuf_editCheckRegistration()" name="editAddRegistrationPage" id="editAddRegistrationPage" value="">
                                 <label for="editAddRegistrationPage">Add field on registration page?</label>
                             </td>
                         </tr>
@@ -385,7 +385,7 @@ function addDynamicFields()
                                 User listing
                             </th>
                             <td>
-                                <input type="checkbox" onclick="editCheckUserList()" name="editUserList" id="editUserList" value="">
+                                <input type="checkbox" onclick="bcuf_editCheckUserList()" name="editUserList" id="editUserList" value="">
                                 <label for="editUserList">Show on user listing?</label>
                             </td>
                         </tr>
@@ -494,7 +494,7 @@ function addDynamicFields()
     <script>
         var addRegistrationPage = document.getElementById('addRegistrationPage')
 
-        function checkRegistration() {
+        function bcuf_checkRegistration() {
             if (addRegistrationPage.checked) {
                 addRegistrationPage.value = true;
             } else {
@@ -505,7 +505,7 @@ function addDynamicFields()
         // Checking User List
         var user_list = document.getElementById('userList')
 
-        function checkUserList() {
+        function bcuf_checkUserList() {
             if (user_list.checked) {
                 user_list.value = true;
             } else {
@@ -521,7 +521,7 @@ function addDynamicFields()
 
         var optionData = Array();
 
-        function editCheckRegistration() {
+        function bcuf_editCheckRegistration() {
             if (document.getElementById('editAddRegistrationPage').checked) {
                 document.getElementById('editAddRegistrationPage').value = true;
             } else {
@@ -532,7 +532,7 @@ function addDynamicFields()
         // Checking User List
         var edit_user_list = document.getElementById('editUserList')
 
-        function editCheckUserList() {
+        function bcuf_editCheckUserList() {
             if (edit_user_list.checked) {
                 edit_user_list.value = true;
             } else {
@@ -853,12 +853,12 @@ function addDynamicFields()
         var field_options = [];
 
 
-        function deleteOption(index) {
+        function bcuf_deleteOption(index) {
             field_options.splice(index, 1);
-            addFieldOptionsToDom();
+            bcuf_addFieldOptionsToDom();
         }
 
-        function addFieldOptionsToDom() {
+        function bcuf_addFieldOptionsToDom() {
             var elContainer = document.getElementById("existingOptions");
             elContainer.innerHTML = "";
 
@@ -876,7 +876,7 @@ function addDynamicFields()
                 div.classList = "button primary-button ";
                 div.addEventListener("click", function() {
                     if (confirm("Delete?")) {
-                        deleteOption(i);
+                        bcuf_deleteOption(i);
                     }
                 });
                 var label = document.createTextNode(element.label);
@@ -899,9 +899,9 @@ function addDynamicFields()
             }
         }
 
-        document.getElementById("add_option").addEventListener("click", addOptionsToOptionArray);
+        document.getElementById("add_option").addEventListener("click", bcuf_addOptionsToOptionArray);
 
-        function addOptionsToOptionArray() {
+        function bcuf_addOptionsToOptionArray() {
             if (document.getElementById('option_label').value == "" && document.getElementById('option_value').value == "") {
                 alert("should not be blank");
                 return document.getElementById('option_label').value;
@@ -914,7 +914,7 @@ function addDynamicFields()
             console.log(field_options);
             document.getElementById('option_label').value = "";
             document.getElementById('option_value').value = "";
-            addFieldOptionsToDom()
+            bcuf_addFieldOptionsToDom()
         }
 
 
@@ -1101,14 +1101,14 @@ function addDynamicFields()
 <?php
 }
 
-function array_swap(&$array, $swap_a, $swap_b)
+function bcuf_array_swap(&$array, $swap_a, $swap_b)
 {
     list($array[$swap_a], $array[$swap_b]) = array($array[$swap_b], $array[$swap_a]);
 }
 
-add_action('wp_ajax_brave_up_field', 'brUpField');
+add_action('wp_ajax_brave_up_field', 'bcuf_brUpField');
 
-function brUpField()
+function bcuf_brUpField()
 {
 
     if (!current_user_can('administrator')) {
@@ -1137,7 +1137,7 @@ function brUpField()
     }
 
     if ($indexOfItem > 0) {
-        array_swap($fields, $indexOfItem - 1, $indexOfItem);
+        bcuf_array_swap($fields, $indexOfItem - 1, $indexOfItem);
     }
 
     $updateString = json_encode($fields);
@@ -1154,9 +1154,9 @@ function brUpField()
     wp_die();
 }
 
-add_action('wp_ajax_brave_down_field', 'brDownField');
+add_action('wp_ajax_brave_down_field', 'bcuf_DownField');
 
-function brDownField()
+function bcuf_DownField()
 {
 
     if (!current_user_can('administrator')) {
@@ -1185,7 +1185,7 @@ function brDownField()
     }
 
     if ($indexOfItem < count($fields) - 1) {
-        array_swap($fields, $indexOfItem, $indexOfItem + 1);
+        bcuf_array_swap($fields, $indexOfItem, $indexOfItem + 1);
     }
 
     $updateString = json_encode($fields);
@@ -1204,9 +1204,9 @@ function brDownField()
 
 
 
-add_action('wp_ajax_brave_delete_field', 'brDeleteField');
+add_action('wp_ajax_brave_delete_field', 'bcuf_DeleteField');
 
-function brDeleteField()
+function bcuf_DeleteField()
 {
 
     if (!current_user_can('administrator')) {
@@ -1251,8 +1251,8 @@ function brDeleteField()
 }
 
 // creating a wordpress end point to send OTP
-add_action('wp_ajax_edit_brave_add_field', 'brEditAddField');
-function brEditAddField()
+add_action('wp_ajax_edit_brave_add_field', 'bcuf_EditAddField');
+function bcuf_EditAddField()
 {
     $fields = get_option("braveWPUser");
     if ($fields == "") {
@@ -1341,9 +1341,9 @@ function brEditAddField()
 }
 
 // creating a wordpress end point to send OTP
-add_action('wp_ajax_brave_add_field', 'brAddField');
+add_action('wp_ajax_brave_add_field', 'bcuf_AddField');
 
-function brAddField()
+function bcuf_AddField()
 {
     $fields = get_option("braveWPUser");
     if ($fields == "") {
@@ -1414,7 +1414,7 @@ function brAddField()
 }
 
 // Registration Field Style 
-function register_field_style()
+function bcuf_register_field_style()
 { ?>
     <style type="text/css">
         .login form .input,
@@ -1450,11 +1450,11 @@ function register_field_style()
 <?php
 }
 
-add_action('login_head', 'register_field_style');
+add_action('login_head', 'bcuf_register_field_style');
 
 
 // Profile page Style
-function profile_style()
+function bcuf_profile_style()
 { ?>
     <style type="text/css">
         .wp-core-ui .button {
@@ -1488,8 +1488,8 @@ function profile_style()
         }
     </style>
 <?php }
-add_action('edit_user_profile', 'profile_style');
-add_action('user_new_form', 'profile_style');
-add_action('edit_user_profile_update', 'profile_style');
-add_action('personal_options_update', 'profile_style');
-add_action('show_user_profile', 'profile_style');
+add_action('edit_user_profile', 'bcuf_profile_style');
+add_action('user_new_form', 'bcuf_profile_style');
+add_action('edit_user_profile_update', 'bcuf_profile_style');
+add_action('personal_options_update', 'bcuf_profile_style');
+add_action('show_user_profile', 'bcuf_profile_style');

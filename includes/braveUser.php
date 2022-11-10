@@ -1,6 +1,6 @@
 <?php
 include("user_field.php");
-class braveUser
+class bcuf_braveUser
 {
     private $userfield;
     function addField($userfield)
