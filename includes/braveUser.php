@@ -20,6 +20,7 @@ class bcuf_braveUser
 
 
         if ($userfield->getShowOnRegistration()) {
+          //  $userfield->setPostFixHTML("");
             add_action('register_form', [$userfield, 'showNewField']);
             add_action('user_register', [$userfield, 'updateFieldIntoDatabase']);
         }        
