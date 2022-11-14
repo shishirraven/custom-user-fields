@@ -123,24 +123,21 @@ class bcuf_wpUserField
    {
        return wp_parse_args(array($this->name => $this->name), $columns);
    }
-
-
-
-
     public function fieldWrapperForm($labelHtml, $inputHtml, $postFixHTML)
     {
 ?>
 
     <table class="form-table">
             <tr>
-                <th><?php echo wp_kses($labelHtml); ?></th>
+                <th><?php echo wp_kses_post($labelHtml); ?></th>
                 <td>
                     <div style="display: flex; gap:20px">
-                    <?php echo wp_kses($inputHtml); ?>
+                    <?php //echo wp_kses($inputHtml,array("input"=>array("type"=>array(),"id"=>array()),"div"=>array(),"label"=>array("for"=>array()))); ?>
+                    <?php echo wp_kses($inputHtml,'entities'); ?>
                     </div>
                 </td>
                 <td>
-                <?php echo wp_kses($postFixHTML); ?>
+                <?php echo wp_kses_post($postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -151,7 +148,7 @@ class bcuf_wpUserField
     {
     ?>
         <p>
-            <?php echo wp_kses($labelHtml); ?><div> <?php echo wp_kses($inputHtml); ?></div>
+            <?php echo wp_kses_post($labelHtml); ?><div> <?php echo wp_kses_post($inputHtml); ?></div>
            
         </p>
     <?php
@@ -191,13 +188,13 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
-                    <input type="text" id="<?php echo  wp_kses($this->name); ?>" placeholder="<?php echo wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($fieldValue); ?>" class="regular-text" />
+                    <input type="text" id="<?php echo  wp_kses_post($this->name); ?>" placeholder="<?php echo wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($fieldValue); ?>" class="regular-text" />
 
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -211,7 +208,7 @@ class bcuf_wpUserField
 
         $select = "<select id=\"{$this->name}\" name=\"{$this->name}\">";
         for ($i = 0; $i < count($this->options); $i++) {
-            $select .= "<option value=\"{$this->options[$i][0]}\">{wp_kses($this->options[$i][1])}</option>";
+            $select .= "<option value=\"{$this->options[$i][0]}\">{wp_kses_post($this->options[$i][1])}</option>";
         }
         $select .= "</select>";
         return $select;
@@ -251,24 +248,24 @@ class bcuf_wpUserField
         <table class="form-table">
             <tr>
                 <th>
-                    <label for="<?php echo  wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label>
+                    <label for="<?php echo  wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label>
                 </th>
                 <td>
-                    <select id="<?php echo  wp_kses($this->name); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($this->value); ?>">
+                    <select id="<?php echo  wp_kses_post($this->name); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($this->value); ?>">
                         <?php
                         for ($i = 0; $i < count($this->options); $i++) { ?>
                             <option <?php
                                     if ($fieldValue == $this->options[$i][0]) {
                                         echo "selected";
                                     }
-                                    ?> value="<?php echo wp_kses($this->options[$i][0]); ?>">
-                                <?php echo wp_kses(wp_kses($this->options[$i][1])); ?>
+                                    ?> value="<?php echo wp_kses_post($this->options[$i][0]); ?>">
+                                <?php echo wp_kses_post(wp_kses_post($this->options[$i][1])); ?>
                             </option>
                         <?php } ?>
                     </select>
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -283,7 +280,7 @@ class bcuf_wpUserField
         for ($i = 0; $i < count($this->options); $i++) {
             $radio .= "<div >";
             $radio .= "<input style='margin-right:5px;' type=\"radio\" id=\"{$this->name}{$i}\" name=\"{$this->name}\" value=\"{$this->options[$i][0]}\">";
-            $radio .= "<label for=\"{$this->name}{$i}\">{wp_kses($this->options[$i][1])}</label><br>";
+            $radio .= "<label for=\"{$this->name}{$i}\">{$this->options[$i][1]}</label><br>";
             $radio .= "</div>";
         }
         return $radio;
@@ -323,25 +320,25 @@ class bcuf_wpUserField
   
         <table class="form-table">
             <tr>
-                <th><?php echo wp_kses($this->label); ?></th>
+                <th><?php echo wp_kses_post($this->label); ?></th>
                 <td>
                     <div style="display: flex; gap:20px">
                         <?php
                         for ($i = 0; $i < count($this->options); $i++) { ?>
                             <div>
-                                <input type="radio" id="<?php echo wp_kses($this->options[$i][0]); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($this->options[$i][0]); ?>" class="" <?php
+                                <input type="radio" id="<?php echo wp_kses_post($this->options[$i][0]); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($this->options[$i][0]); ?>" class="" <?php
                                                                                                                                                                                         if ($fieldValue == $this->options[$i][0]) {
                                                                                                                                                                                             echo "checked";
                                                                                                                                                                                         } ?> />
-                                <label for="<?php echo wp_kses($this->options[$i][0]); ?>">
-                                    <?php echo wp_kses($this->options[$i][1]); ?>
+                                <label for="<?php echo wp_kses_post($this->options[$i][0]); ?>">
+                                    <?php echo wp_kses_post($this->options[$i][1]); ?>
                                 </label>
                             </div>
                         <?php } ?>
                     </div>
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -376,15 +373,15 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><?php echo wp_kses($this->label); ?></th>
+                <th><?php echo wp_kses_post($this->label); ?></th>
                 <td>
-                    <input type="checkbox" id="<?php echo wp_kses($this->name); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($this->checkboxOptions); ?>" class="regular-text" <?php
+                    <input type="checkbox" id="<?php echo wp_kses_post($this->name); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($this->checkboxOptions); ?>" class="regular-text" <?php
                                                                                                                                                                                 if ($fieldValue == $this->checkboxOptions) {
                                                                                                                                                                                     echo "checked";
                                                                                                                                                                                 } ?> />
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -421,13 +418,13 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
-                    <input type="color" id="<?php echo wp_kses($this->name); ?>" placeholder="<?php echo wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($fieldValue); ?>" class="regular-text" />
+                    <input type="color" id="<?php echo wp_kses_post($this->name); ?>" placeholder="<?php echo wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($fieldValue); ?>" class="regular-text" />
 
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -465,13 +462,13 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
-                    <input type="date" id="<?php echo wp_kses($this->name); ?>" placeholder="<?php echo wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($fieldValue); ?>" class="regular-text" />
+                    <input type="date" id="<?php echo wp_kses_post($this->name); ?>" placeholder="<?php echo wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($fieldValue); ?>" class="regular-text" />
 
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -509,13 +506,13 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
-                    <input type="datetime-local" id="<?php echo wp_kses($this->name); ?>" placeholder="<?php echo wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($fieldValue); ?>" class="regular-text" />
+                    <input type="datetime-local" id="<?php echo wp_kses_post($this->name); ?>" placeholder="<?php echo wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($fieldValue); ?>" class="regular-text" />
 
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -553,13 +550,13 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
-                    <input type="month" id="<?php echo wp_kses($this->name); ?>" placeholder="<?php echo wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($fieldValue); ?>" class="regular-text" />
+                    <input type="month" id="<?php echo wp_kses_post($this->name); ?>" placeholder="<?php echo wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($fieldValue); ?>" class="regular-text" />
 
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -597,13 +594,13 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
-                    <input type="number" id="<?php echo wp_kses($this->name); ?>" placeholder="<?php echo wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($fieldValue); ?>" class="regular-text" />
+                    <input type="number" id="<?php echo wp_kses_post($this->name); ?>" placeholder="<?php echo wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($fieldValue); ?>" class="regular-text" />
 
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -641,13 +638,13 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
-                    <input type="password" id="<?php echo wp_kses($this->name); ?>" placeholder="<?php echo wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($fieldValue); ?>" class="regular-text" />
+                    <input type="password" id="<?php echo wp_kses_post($this->name); ?>" placeholder="<?php echo wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($fieldValue); ?>" class="regular-text" />
 
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -685,12 +682,12 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
-                    <input type="search" id="<?php echo wp_kses($this->name); ?>" placeholder="<?php echo wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($fieldValue); ?>" class="regular-text" />
+                    <input type="search" id="<?php echo wp_kses_post($this->name); ?>" placeholder="<?php echo wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($fieldValue); ?>" class="regular-text" />
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -728,13 +725,13 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
-                    <input type="tel" id="<?php echo wp_kses($this->name); ?>" placeholder="<?php echo  wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($fieldValue); ?>" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" class="regular-text" />
+                    <input type="tel" id="<?php echo wp_kses_post($this->name); ?>" placeholder="<?php echo  wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($fieldValue); ?>" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" class="regular-text" />
 
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -772,13 +769,13 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
-                    <input type="time" id="<?php echo wp_kses($this->name); ?>" placeholder="<?php echo  wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($fieldValue); ?>" class="regular-text" />
+                    <input type="time" id="<?php echo wp_kses_post($this->name); ?>" placeholder="<?php echo  wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($fieldValue); ?>" class="regular-text" />
 
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -815,13 +812,13 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
-                    <input type="url" id="<?php echo wp_kses($this->name); ?>" placeholder="<?php echo  wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($fieldValue); ?>" class="regular-text" />
+                    <input type="url" id="<?php echo wp_kses_post($this->name); ?>" placeholder="<?php echo  wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($fieldValue); ?>" class="regular-text" />
 
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -859,13 +856,13 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
-                    <input type="week" id="<?php echo wp_kses($this->name); ?>" placeholder="<?php echo  wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($fieldValue); ?>" class="regular-text" />
+                    <input type="week" id="<?php echo wp_kses_post($this->name); ?>" placeholder="<?php echo  wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($fieldValue); ?>" class="regular-text" />
 
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -882,7 +879,7 @@ class bcuf_wpUserField
             return $this->fieldWrapperForm(
                 "<label for=\"{$this->name}\">{$this->label}</label>",
                 "<div style='display: flex;'>
-                <input type=\"range\" id=\"{$this->name}\" placeholder=\"{$this->placeholder}\" name=\"{$this->name}\" min=\"{$this->rangeMin}\" max=\"{$this->rangeMax}\" value=\"{$this->value}\" class=\"regular-text\" oninput=\"this.nextElementSibling.value = this.value\"  /> <output><?php echo wp_kses($this->value); ?></output>
+                <input type=\"range\" id=\"{$this->name}\" placeholder=\"{$this->placeholder}\" name=\"{$this->name}\" min=\"{$this->rangeMin}\" max=\"{$this->rangeMax}\" value=\"{$this->value}\" class=\"regular-text\" oninput=\"this.nextElementSibling.value = this.value\"  /> <output><?php echo wp_kses_post($this->value); ?></output>
                 </div>",
                 $this->postFixHTML
             );
@@ -891,7 +888,7 @@ class bcuf_wpUserField
             return $this->fieldWrapperRegistrationForm(
                 "<label for=\"{$this->name}\">{$this->label}</label>",
                 "<div style='display: flex;'>
-                <input type=\"range\" id=\"{$this->name}\" placeholder=\"{$this->placeholder}\" name=\"{$this->name}\" min=\"{$this->rangeMin}\" max=\"{$this->rangeMax}\" value=\"{$this->value}\" class=\"regular-text\" oninput=\"this.nextElementSibling.value = this.value\"  /> <output><?php echo wp_kses($this->value); ?></output>
+                <input type=\"range\" id=\"{$this->name}\" placeholder=\"{$this->placeholder}\" name=\"{$this->name}\" min=\"{$this->rangeMin}\" max=\"{$this->rangeMax}\" value=\"{$this->value}\" class=\"regular-text\" oninput=\"this.nextElementSibling.value = this.value\"  /> <output><?php echo wp_kses_post($this->value); ?></output>
                 </div>",
                 $this->postFixHTML
             );
@@ -907,15 +904,15 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
                    <div style='display: flex;'>
-                   <input type="range" id="<?php echo wp_kses($this->name); ?>" placeholder="<?php echo  wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($this->value); ?>" min="<?php echo wp_kses($this->rangeMin); ?>" max="<?php echo wp_kses($this->rangeMax); ?>" class="regular-text" oninput="this.nextElementSibling.value = this.value" step="<?php echo wp_kses($this->step); ?>" />
-                    <output><?php echo wp_kses($this->value); ?></output>
+                   <input type="range" id="<?php echo wp_kses_post($this->name); ?>" placeholder="<?php echo  wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($this->value); ?>" min="<?php echo wp_kses_post($this->rangeMin); ?>" max="<?php echo wp_kses_post($this->rangeMax); ?>" class="regular-text" oninput="this.nextElementSibling.value = this.value" step="<?php echo wp_kses_post($this->step); ?>" />
+                    <output><?php echo wp_kses_post($this->value); ?></output>
                    </div>
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -953,12 +950,12 @@ class bcuf_wpUserField
     ?>
         <table class="form-table">
             <tr>
-                <th><label for="<?php echo wp_kses($this->name); ?>"><?php echo wp_kses($this->label); ?></label></th>
+                <th><label for="<?php echo wp_kses_post($this->name); ?>"><?php echo wp_kses_post($this->label); ?></label></th>
                 <td>
-                    <textarea id="<?php echo wp_kses($this->name); ?>" placeholder="<?php echo  wp_kses($this->placeholder); ?>" name="<?php echo wp_kses($this->name); ?>" value="<?php echo wp_kses($fieldValue); ?>" rows="3" class="regular-text"><?php echo wp_kses($fieldValue); ?></textarea>
+                    <textarea id="<?php echo wp_kses_post($this->name); ?>" placeholder="<?php echo  wp_kses_post($this->placeholder); ?>" name="<?php echo wp_kses_post($this->name); ?>" value="<?php echo wp_kses_post($fieldValue); ?>" rows="3" class="regular-text"><?php echo wp_kses_post($fieldValue); ?></textarea>
                 </td>
                 <td>
-                    <?php echo wp_kses($this->postFixHTML); ?>
+                    <?php echo wp_kses_post($this->postFixHTML); ?>
                 </td>
             </tr>
         </table>
@@ -1058,7 +1055,7 @@ class bcuf_wpUserField
      */
     public function getPlaceholder()
     {
-        return wp_kses($this->placeholder);
+        return wp_kses_post($this->placeholder);
     }
 
     /**
